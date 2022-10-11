@@ -1,31 +1,56 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { fetchDetails } from '../../services/fetchFilms';
+import { IoArrowBackSharp } from 'react-icons/io5';
 
 export const MovieDetails = () => {
-  return (
-    <main>
-        <h1>MovieDetails Page</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus
-            laborum amet ab cumque sit nihil dolore modi error repudiandae
-            perspiciatis atque voluptas corrupti, doloribus ex maiores quam magni
-            mollitia illum dolor quis alias in sequi quod. Sunt ex numquam hic
-            asperiores facere natus sapiente cum neque laudantium quam, expedita
-            voluptates atque quia aspernatur saepe illo, rem quasi praesentium
-            aliquid sed inventore obcaecati veniam? Nisi magnam vero, dolore
-            praesentium totam ducimus similique asperiores culpa, eius amet
-            repudiandae quam ut. Architecto commodi, tempore ut nostrum voluptas
-            dolorum illum voluptatum dolores! Quas perferendis quis alias excepturi
-            eaque voluptatibus eveniet error, nulla rem iusto?
-        </p>
-        <ul>
-            <li>
-                <Link to="cast">Cast</Link>
-            </li>
-            <li>
-                <Link to="reviews">Reviews</Link>
-            </li>
-        </ul>
-        <Outlet />
-    </main>
-  );
+    const { movieId } = useParams();
+    const [state, setState] = useState(null);
+    // const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const getMovie = async () => {
+            // setError(null)
+            setState(null)
+
+        try {
+            const data = await fetchDetails(movieId)
+
+            setState(data)
+
+        } catch (error) {
+            // setError(error)
+        }
+    }
+        getMovie();
+    }, [movieId])
+
+    if (!state) return null
+
+    return (
+        <>
+            <NavLink to='/movies'><IoArrowBackSharp /> Go Back</NavLink>
+            <div>
+                <img src={`https://image.tmdb.org/t/p/w500${state.poster_path}`} alt="" />
+                <div>
+                    <h1>{state.title}</h1>
+                    <p>User score: {state.vote_average}</p>
+                    <h2>Overwiew</h2>
+                    <p>{state.overview}</p>
+                    <h3>Genres</h3>
+                    <p>{state.genres.map(({ name }) => `${name}`).join(', ')}</p>
+                </div>
+                <h4>Additional information</h4>
+                <ul>
+                    <li>
+                        <Link to="cast">Cast</Link>
+                    </li>
+                    <li>
+                        <Link to="reviews">Reviews</Link>
+                    </li>
+                </ul>
+                <Outlet />
+            </div>
+        </>
+    );
 };

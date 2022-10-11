@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { BsSearch } from 'react-icons/bs';
 
 export default function Searchbar({ onSubmit }) {
 
@@ -11,11 +13,11 @@ export default function Searchbar({ onSubmit }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // if (inputValue.trim() === '') {
-        //     return toast.error("Please, input something", {
-        //         theme: "colored"
-        //     });
-        // }
+        if (inputValue.trim() === '') {
+            return toast.error("Please, input something", {
+                theme: "colored"
+            });
+        }
 
         onSubmit(inputValue);
         setInputValue(inputValue);
@@ -25,7 +27,7 @@ export default function Searchbar({ onSubmit }) {
             <div>
                 <form onSubmit={handleSubmit}>
                     <button type="submit">
-                        {/* <BsSearch /> */}
+                        <BsSearch />
                     </button>
 
                     <input

@@ -18,7 +18,7 @@ export const fetchTrending = async () => {
 export const fetchSearch = async (query) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`
+      `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`
     );
     console.log(response.data);
     return response.data.results;
@@ -30,7 +30,7 @@ export const fetchSearch = async (query) => {
 export const fetchDetails = async (id) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
+      `${BASE_URL}movie/${id}?api_key=${API_KEY}`
     );
     console.log(response.data);
     return response.data;
@@ -42,7 +42,7 @@ export const fetchDetails = async (id) => {
 export const fetchCredits = async (id) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`
+      `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
     );
     console.log(response.data);
     return response.data.cast;
@@ -54,7 +54,7 @@ export const fetchCredits = async (id) => {
 export const fetchReviews = async (id) => {
   try {
     const response = await axios.get(
-      `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`
+      `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`
     );
     console.log(response.data);
     return response.data.results;
