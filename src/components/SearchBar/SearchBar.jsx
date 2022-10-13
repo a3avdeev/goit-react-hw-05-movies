@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import { BsSearch } from 'react-icons/bs';
+import PropTypes from "prop-types";
 
 export default function Searchbar({ onSubmit }) {
 
-    const [inputValue, setInputValue] = useState("")
+    const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (event) => {
         setInputValue(event.currentTarget.value)
@@ -14,6 +16,7 @@ export default function Searchbar({ onSubmit }) {
         e.preventDefault();
 
         if (inputValue.trim() === '') {
+            
             return toast.error("Please, input something", {
                 theme: "colored"
             });
@@ -34,7 +37,7 @@ export default function Searchbar({ onSubmit }) {
                         type="text"
                         autoComplete="off"
                         autoFocus
-                        placeholder="Search images and photos"
+                        placeholder="movies search"
                         value={inputValue}
                         onChange={handleInputChange}
                         name='inputValue'
@@ -42,5 +45,8 @@ export default function Searchbar({ onSubmit }) {
                 </form>
             </div>
         );
-    
+};
+
+Searchbar.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
 }

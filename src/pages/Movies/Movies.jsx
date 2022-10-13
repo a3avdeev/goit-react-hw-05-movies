@@ -3,62 +3,67 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSearch } from '../../services/fetchFilms';
 import { MovieList } from '../../components/MovieList/MovieList';
-import { toast } from 'react-toastify';
+import { Loader } from 'components/Loader/Loader';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export const Movies = () => {
-    // const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useSearchParams();
     const [items, setItems] = useState([]);
-    // const [error, setError] = useState(null);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const queryParam = searchParams.get('query') ?? '';
+    const queryParam = inputValue.get('query') ?? '';
 
+    useEffect(() => {
+        if (queryParam === '') {
+            return
+        }
+
+        const getMovies = async () => {
+            setLoading(true);
+            try {
+                const data = await fetchSearch(queryParam);
+                if (data.length === 0) {
+                        toast.warn ("Sorry, there are no matching your search query", {
+                        theme: "colored"
+                    })
+                    }
+                else {
+                    setItems((items) => 
+                        [...items, ...data])
+                }
+            } catch (error) {
+                setError(error);
+                }
+            finally {
+                setLoading(false);
+                }
+            }
+                getMovies();
+            }, [queryParam]);
+    
     // const hadleFormSubmit = input => {
     //     if (input !== inputValue) {
     //         setInputValue(input);
+    //         setItems([]);
     //     }
     // };
 
-    const changeQuery = value => {
-    setSearchParams(value !== '' ? {query: value } : {})
-  }
-
-    useEffect(() => {
-    if (queryParam === '') {
-      return
+    const hadleFormSubmit = value => {
+        setInputValue(value !== '' ? { query: value } : {});
+        setItems([]);
     }
 
-    const getMovies = async () => {
-    // setLoading(true)
-
-    try {
-      const data = await fetchSearch(queryParam)
-
-      if (data.length === 0) {
-        setItems([])
-        return toast(`Sorry, we hadn't found movies for "${queryParam}", please, enter another query :)`)
-      }
-
-      setItems([...data])
-
-    } catch (error) {
-    //   setError(error)
-    }
-    // finally {
-    //   setLoading(false)
-    // }
-  }
-    getMovies();
-  }, [queryParam])
-
-  const isData = items.length > 0;
+    const isMovies = items.length !== 0;
 
     return (
-      
-    <main>
-            <h1>Movies page</h1>
-            <Searchbar onSubmit={changeQuery} value={queryParam} />
-            {isData && <MovieList items={items} />}
-    </main>
-  );
+        <div>
+            <Searchbar onSubmit={hadleFormSubmit} />
+            {loading && <Loader />}
+            {error && <p>Please try again later</p>}
+            {isMovies && <MovieList items={items} />}
+            <ToastContainer autoClose={3000} />
+        </div>
+    );
 };

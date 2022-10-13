@@ -5,27 +5,30 @@ import { fetchReviews } from '../../services/fetchFilms';
 export const Reviews = () => {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
-    // const [error, setError] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const getMovie = async () => {
-            // setError(null)
+            setError(null)
             setReviews(null)
 
-        try {
-            const data = await fetchReviews(movieId)
+            try {
+                const data = await fetchReviews(movieId)
 
-            setReviews(data)
+                setReviews(data)
 
-        } catch (error) {
-        // setError(error)
+            } catch (error) {
+                setError(error)
+            }
         }
-    }
         getMovie();
-    }, [movieId])
+    }, [movieId]);
+
+    const isMovie = reviews?.length === 0 || error;
 
     return (
         <ul>
+            {isMovie && <p>We don't have any reviews for this movie</p>}
             {reviews?.map(({id, author, content}) => <li key={id}>
             <p>Author: {author}</p>
             <p>{content}</p>
