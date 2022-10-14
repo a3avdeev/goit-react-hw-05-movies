@@ -7,23 +7,23 @@ import { Loader } from 'components/Loader/Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-export const Movies = () => {
-    const [inputValue, setInputValue] = useSearchParams();
+export default function Movies() {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const queryParam = inputValue.get('query') ?? '';
+    const inputValue = searchParams.get('query') ?? '';
 
     useEffect(() => {
-        if (queryParam === '') {
+        if (inputValue === '') {
             return
         }
 
         const getMovies = async () => {
             setLoading(true);
             try {
-                const data = await fetchSearch(queryParam);
+                const data = await fetchSearch(inputValue);
                 if (data.length === 0) {
                         toast.warn ("Sorry, there are no matching your search query", {
                         theme: "colored"
@@ -41,17 +41,10 @@ export const Movies = () => {
                 }
             }
                 getMovies();
-            }, [queryParam]);
-    
-    // const hadleFormSubmit = input => {
-    //     if (input !== inputValue) {
-    //         setInputValue(input);
-    //         setItems([]);
-    //     }
-    // };
+            }, [inputValue]);
 
     const hadleFormSubmit = value => {
-        setInputValue(value !== '' ? { query: value } : {});
+        setSearchParams(value !== '' ? { query: value } : {});
         setItems([]);
     }
 

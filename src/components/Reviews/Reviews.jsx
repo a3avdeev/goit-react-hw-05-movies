@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from '../../services/fetchFilms';
 
-export const Reviews = () => {
+export default function Reviews() {
     const { movieId } = useParams();
     const [reviews, setReviews] = useState([]);
     const [error, setError] = useState(null);

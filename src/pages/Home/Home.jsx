@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 
-export const Home = () => {
+export default function Home() {
 
     const [loading, setLoading] = useState(false);
     const [items, setItems] = useState([]);
@@ -29,13 +29,11 @@ export const Home = () => {
     const isMovies = items.length !== 0;
 
     return (
-        <main>
             <div>
                 <h1>Trending today</h1>
                 {loading && <Loader />}
-                {error && <p>Please try again later</p>}
+                {error && <p>Sorry. Please try again later</p>}
                 {isMovies && <MovieList items={items} />}
             </div>
-        </main>
     );
 };

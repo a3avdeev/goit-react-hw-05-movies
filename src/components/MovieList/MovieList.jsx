@@ -1,4 +1,5 @@
 import { NavLink, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const MovieList = ({ items }) => {
     const location = useLocation();
@@ -10,5 +11,13 @@ export const MovieList = ({ items }) => {
     
 };
 
-
+MovieList.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape(
+        {
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string,
+            name: PropTypes.string,
+        }
+    )),
+}
 

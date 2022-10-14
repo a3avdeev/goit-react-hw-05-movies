@@ -8,10 +8,11 @@ export const fetchTrending = async () => {
     const response = await axios.get(
       `${BASE_URL}trending/all/day?api_key=${API_KEY}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.results;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    alert(`Sorry. ${error.message}. Please try another movie`);
   }
 };
 
@@ -20,10 +21,11 @@ export const fetchSearch = async (query) => {
     const response = await axios.get(
       `${BASE_URL}search/movie?api_key=${API_KEY}&query=${query}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.results;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    alert(`Sorry. ${error.message}. Please try another movie`);
   }
 };
 
@@ -32,10 +34,11 @@ export const fetchDetails = async (id) => {
     const response = await axios.get(
       `${BASE_URL}movie/${id}?api_key=${API_KEY}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    alert(`Sorry. ${error.message}. Please try another movie`);
   }
 };
 
@@ -44,10 +47,11 @@ export const fetchCredits = async (id) => {
     const response = await axios.get(
       `${BASE_URL}movie/${id}/credits?api_key=${API_KEY}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.cast;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    alert(`Sorry. ${error.message}. Please try another movie`);
   }
 };
 
@@ -56,9 +60,10 @@ export const fetchReviews = async (id) => {
     const response = await axios.get(
       `${BASE_URL}movie/${id}/reviews?api_key=${API_KEY}`
     );
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.results;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    alert(`Sorry. ${error.message}. Please try another movie`);
   }
 };
