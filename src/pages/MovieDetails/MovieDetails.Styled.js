@@ -22,7 +22,7 @@ export const MovieWrapper = styled.div`
   padding-left: 24px;
 
   & img {
-    width: 300px;
+    max-width: 300px;
     height: auto;
   }
 

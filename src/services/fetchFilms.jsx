@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = "https://api.themoviedb.org/3/"
-const API_KEY = "9827f40b343f4f4b022b63e7687192bf"
+const BASE_URL = "https://api.themoviedb.org/3/";
+const API_KEY = "9827f40b343f4f4b022b63e7687192bf";
 
 export const fetchTrending = async () => {
   try {
@@ -37,8 +37,9 @@ export const fetchDetails = async (id) => {
     // console.log(response.data);
     return response.data;
   } catch (error) {
-    console.log(error.message);
-    alert(`Sorry. ${error.message}. Please try another movie`);
+    console.log(error);
+    alert(`Sorry. ${error.response.data.status_message} Please try to search another movie`);
+    window.location.replace("/movies")
   }
 };
 
@@ -51,7 +52,7 @@ export const fetchCredits = async (id) => {
     return response.data.cast;
   } catch (error) {
     console.log(error.message);
-    alert(`Sorry. ${error.message}. Please try another movie`);
+    alert(`Sorry. ${error.message}. Please try something else`);
   }
 };
 
@@ -64,6 +65,6 @@ export const fetchReviews = async (id) => {
     return response.data.results;
   } catch (error) {
     console.log(error.message);
-    alert(`Sorry. ${error.message}. Please try another movie`);
+    alert(`Sorry. ${error.message}. Please try something else`);
   }
 };

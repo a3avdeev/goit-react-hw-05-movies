@@ -8,14 +8,14 @@ export const ActorCards = styled.ul`
   margin-top: -10px;
 
   & li {
-    width: 200px;
+    max-width: 200px;
     min-height: 300px;
     margin-left: 32px;
     margin-top: 32px;
     object-fit: cover;
 
     & img {
-      width: 200px;
+      max-width: 200px;
       height: 300px;
     }
   }

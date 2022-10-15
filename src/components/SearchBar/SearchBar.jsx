@@ -5,9 +5,9 @@ import { BsSearch } from 'react-icons/bs';
 import PropTypes from "prop-types";
 import { SearchbarStyled, DivStyled } from './SearchBar.Styled';
 
-export default function Searchbar({ onSubmit }) {
+export default function Searchbar({ onSubmit, value }) {
 
-    const [inputValue, setInputValue] = useState('');
+    const [inputValue, setInputValue] = useState(value);
 
     const handleInputChange = (event) => {
         setInputValue(event.currentTarget.value)

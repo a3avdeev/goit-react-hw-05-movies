@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy } from "react";
 import { SharedLayout } from './SharedLayout/SharedLayout';
+// import { Navigate } from "react-router-dom";
 
 // const createAsyncComponent = (path) => lazy(() => import(path));
 
@@ -29,6 +30,7 @@ export const App = () => {
           <Route path='reviews' element={<Reviews />} />
         </Route>
         <Route path="*" element={<NotFound />} />
+        {/* <Route path="*" element={<Navigate to="/" replace={true} />} /> */}
       </Route>
     </Routes>
   );

@@ -6,6 +6,7 @@ import { MovieList } from '../../components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import { MovieWrapper } from './Movies.Styled';
 
 export default function Movies() {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -51,12 +52,12 @@ export default function Movies() {
     const isMovies = items.length !== 0;
 
     return (
-        <div>
-            <Searchbar onSubmit={hadleFormSubmit} />
+        <MovieWrapper>
+            <Searchbar onSubmit={hadleFormSubmit} value={inputValue}/>
             {loading && <Loader />}
             {error && <p>Please try again later</p>}
-            {isMovies && <MovieList items={items} />}
+            {isMovies && <ul><MovieList items={items} /></ul>}
             <ToastContainer autoClose={3000} />
-        </div>
+        </MovieWrapper>
     );
 };
