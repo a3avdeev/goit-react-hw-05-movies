@@ -2,6 +2,7 @@ import { fetchTrending } from '../../services/fetchFilms';
 import React, { useState, useEffect } from 'react';
 import { MovieList } from 'components/MovieList/MovieList';
 import { Loader } from 'components/Loader/Loader';
+import { HomeWrapper } from './Home.Styled';
 
 export default function Home() {
 
@@ -29,11 +30,11 @@ export default function Home() {
     const isMovies = items.length !== 0;
 
     return (
-            <div>
+            <HomeWrapper>
                 <h1>Trending today</h1>
                 {loading && <Loader />}
                 {error && <p>Sorry. Please try again later</p>}
-                {isMovies && <MovieList items={items} />}
-            </div>
+                {isMovies && <ul><MovieList items={items} /></ul>}
+            </HomeWrapper>
     );
 };

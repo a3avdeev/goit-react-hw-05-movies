@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { BsSearch } from 'react-icons/bs';
 import PropTypes from "prop-types";
-import { SearchbarStyled, HeaderStyled } from './SearchBar.Styled';
+import { SearchbarStyled, DivStyled } from './SearchBar.Styled';
 
 export default function Searchbar({ onSubmit }) {
 
@@ -28,12 +28,11 @@ export default function Searchbar({ onSubmit }) {
     }
 
     return (
-            <HeaderStyled>
+            <DivStyled>
                 <SearchbarStyled onSubmit={handleSubmit}>
                     <button type="submit">
                         <BsSearch />
                     </button>
-
                     <input
                         type="text"
                         autoComplete="off"
@@ -44,7 +43,7 @@ export default function Searchbar({ onSubmit }) {
                         name='inputValue'
                     />
                 </SearchbarStyled>
-            </HeaderStyled>
+            </DivStyled>
         );
 };
 

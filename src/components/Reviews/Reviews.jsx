@@ -27,13 +27,13 @@ export default function Reviews() {
     const isMovie = reviews?.length === 0 || error;
 
     return (
-        <ul>
+        <ol>
             {isMovie && <p>We don't have any reviews for this movie</p>}
             {reviews?.map(({id, author, content}) => <li key={id}>
-            <p>Author: {author}</p>
+            <p>Author: <b>{author}</b></p>
             <p>{content}</p>
             </li>
         )}
-        </ul>
+        </ol>
     )
 }

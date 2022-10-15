@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderStyled = styled.header`
   top: 0;
@@ -6,20 +7,21 @@ export const HeaderStyled = styled.header`
   position: sticky;
   z-index: 1100;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fff;
+  flex-direction: row;
+  padding: 16px 24px;
   background-color: #fff;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+  & nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
 `;
 
-export const NavItem = styled.nav`
+export const NavItem = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -27,10 +29,11 @@ export const NavItem = styled.nav`
   border-radius: 4px;
   text-decoration: none;
   color: black;
+  font-weight: bold;
 
   &.active {
-    background-color: green;
-    color: orange;
+    background-color: #ff1493;
+    color: #fff;
   }
   :hover:not(.active),
   :focus-visible:not(.active) {

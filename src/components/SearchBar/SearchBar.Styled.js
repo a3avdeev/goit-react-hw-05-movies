@@ -1,18 +1,10 @@
 import styled from 'styled-components';
 
-export const HeaderStyled = styled.div`
+export const DivStyled = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  color: #fff;
-  background-color: #3f51b5;
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  margin: 24px;
 `;
 
 export const SearchbarStyled = styled.form`
@@ -23,6 +15,8 @@ export const SearchbarStyled = styled.form`
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 
   & input {
     display: inline-block;
@@ -31,8 +25,7 @@ export const SearchbarStyled = styled.form`
     font-size: 20px;
     border: none;
     outline: none;
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 10px;
 
     &::placeholder {
       font: inherit;
