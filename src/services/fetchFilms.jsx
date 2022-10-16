@@ -39,7 +39,7 @@ export const fetchDetails = async (id) => {
   } catch (error) {
     console.log(error);
     alert(`Sorry. ${error.response.data.status_message} Please try to search another movie`);
-    window.location.replace("/movies")
+    window.location.replace("/")
   }
 };
 
