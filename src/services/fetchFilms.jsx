@@ -39,7 +39,8 @@ export const fetchDetails = async (id) => {
   } catch (error) {
     console.log(error);
     alert(`Sorry. ${error.response.data.status_message} Please try to search another movie`);
-    window.location.replace("/")
+    // для проверки
+    window.location.replace("/goit-react-hw-05-movies/movies");
   }
 };
 
